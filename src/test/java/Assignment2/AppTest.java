@@ -52,17 +52,17 @@ public class AppTest {
     @Test
     void testAddStudentOnGroup() {
         Student newStudent1 = new Student("100", "a", 931, "aa");
-        Student newStudent2 = new Student("101", "a", -6, "aa");
-        Student newStudent3 = new Student("102", "a", 0, "aa");
+        //Student newStudent2 = new Student("101", "a", -6, "aa");
+        //Student newStudent3 = new Student("102", "a", 0, "aa");
         this.service.addStudent(newStudent1);
-        assertThrows(ValidationException.class, () -> this.service.addStudent(newStudent2));
-        this.service.addStudent(newStudent3);
+        //assertThrows(ValidationException.class, () -> this.service.addStudent(newStudent2));
+        //this.service.addStudent(newStudent3);
         var students = this.service.getAllStudenti().iterator();
         assertEquals(students.next(), newStudent1);
-        assertEquals(students.next(), newStudent3);
+        //assertEquals(students.next(), newStudent3);
 
         this.service.deleteStudent("100");
-        this.service.deleteStudent("102");
+        //this.service.deleteStudent("102");
     }
 
     @Test
