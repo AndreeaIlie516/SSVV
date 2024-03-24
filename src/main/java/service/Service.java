@@ -1,15 +1,15 @@
-package main.java.service;
+package service;
 
-import main.java.curent.Curent;
-import main.java.domain.Nota;
-import main.java.domain.Student;
-import main.java.domain.Tema;
+import curent.Curent;
+import domain.Nota;
+import domain.Student;
+import domain.Tema;
 
-import main.java.repository.*;
-import main.java.validation.NotaValidator;
-import main.java.validation.StudentValidator;
-import main.java.validation.TemaValidator;
-import main.java.validation.ValidationException;
+import repository.*;
+import validation.NotaValidator;
+import validation.StudentValidator;
+import validation.TemaValidator;
+import validation.ValidationException;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;

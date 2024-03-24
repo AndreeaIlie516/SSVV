@@ -1,14 +1,14 @@
-package test.java.Assignment2;
+package Assignment2;
 
-import main.java.domain.Student;
+import domain.Student;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import main.java.repository.StudentXMLRepo;
-import main.java.service.Service;
-import main.java.validation.StudentValidator;
-import main.java.validation.ValidationException;
+import repository.StudentXMLRepo;
+import service.Service;
+import validation.StudentValidator;
+import validation.ValidationException;
 
 import java.io.BufferedWriter;
 import java.io.File;
