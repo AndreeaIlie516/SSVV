@@ -1,4 +1,4 @@
-package test.java.ssvv.lab2;
+package test.java.Assignment2;
 
 import main.java.domain.Student;
 import org.junit.jupiter.api.AfterAll;
@@ -17,7 +17,7 @@ import java.io.IOException;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class TestsAddStudent {
+public class AppTest {
     private StudentXMLRepo studentFileRepository;
     private StudentValidator studentValidator;
     private Service service;
