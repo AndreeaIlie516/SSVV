@@ -203,4 +203,10 @@ public class AppTest {
         Student newStudent = new Student("1111", "BobTheBuilder", 334, "");
         assertThrows(ValidationException.class, () -> this.service.addStudent(newStudent));
     }
+
+    @Test
+    public void testAddStudentWithNullEmail() {
+        Student newStudent = new Student("1111", "BobTheBuilder", 334, null);
+        assertThrows(ValidationException.class, () -> this.service.addStudent(newStudent));
+    }
 }
