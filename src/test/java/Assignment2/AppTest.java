@@ -89,4 +89,26 @@ public class AppTest {
 
         this.service.deleteStudent("3");
     }
+
+    @Test
+    public void testAddNonDuplicateStudent(){
+        Student newStudent1 = new Student("11", "Gigi", 935, "gigi@gmail.com");
+        Student newStudent2 = new Student("111", "Gigi", 935, "gigi@gmail.com");
+
+
+        Student stud1 = this.service.addStudent(newStudent1);
+        assertNull(stud1);
+
+        Student stud2 = this.service.addStudent(newStudent2);
+        assertNull(stud2);
+
+        var students = this.service.getAllStudenti().iterator();
+
+        assertEquals(students.next().getID(), newStudent1.getID());
+        assertEquals(students.next().getID(), newStudent2.getID());
+
+        this.service.deleteStudent("11");
+        this.service.deleteStudent("111");
+    }
+
 }
