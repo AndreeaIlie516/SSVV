@@ -14,8 +14,8 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class AppTest {
     private StudentXMLRepo studentFileRepository;
@@ -75,5 +75,18 @@ public class AppTest {
         assertEquals(students.next(), newStudent1);
         assertThrows(ValidationException.class, () -> this.service.addStudent(newStudent2));
         assertThrows(ValidationException.class, () -> this.service.addStudent(newStudent3));
+    }
+
+    @Test
+    public void testAddDuplicateStudent(){
+        Student newStudent1 = new Student("3", "Stefan cel Mare", 933, "stefan@gmail.com");
+
+        Student stud1 = this.service.addStudent(newStudent1);
+        assertNull(stud1);
+
+        Student stud2 = this.service.addStudent(newStudent1);
+        assertEquals(newStudent1.getID(), stud2.getID());
+
+        this.service.deleteStudent("3");
     }
 }
