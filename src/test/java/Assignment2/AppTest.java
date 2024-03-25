@@ -178,5 +178,10 @@ public class AppTest {
         this.service.deleteStudent("1234");
     }
 
+    @Test
+    public void testAddStudentFromInvalidGroup() {
+        Student newStudent1 = new Student("1234", "Batman", -6, "batman@gmail.com");
+        assertThrows(ValidationException.class, () -> this.service.addStudent(newStudent1));
+    }
 
 }
