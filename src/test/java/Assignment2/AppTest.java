@@ -164,4 +164,19 @@ public class AppTest {
         assertThrows(ValidationException.class, () -> this.service.addStudent(newStudent1));
     }
 
+    /**
+     * test Student group
+     */
+    @Test
+    public void testAddStudentFromValidGroup() {
+        Student newStudent1 = new Student("1234", "Batman", 844, "batman@gmail.com");
+
+        this.service.addStudent(newStudent1);
+        var students = this.service.getAllStudenti().iterator();
+        assertEquals(students.next().getID(), newStudent1.getID());
+
+        this.service.deleteStudent("1234");
+    }
+
+
 }
