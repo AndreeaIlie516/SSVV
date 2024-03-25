@@ -209,4 +209,18 @@ public class AppTest {
         Student newStudent = new Student("1111", "BobTheBuilder", 334, null);
         assertThrows(ValidationException.class, () -> this.service.addStudent(newStudent));
     }
+
+    /**
+     * BVA Test case
+     */
+    @Test
+    public void testAddStudentGroupLowerBVABound(){
+        Student newStudent = new Student("1", "OliMurs", 0, "oli@gmail.com");
+
+        this.service.addStudent(newStudent);
+        var students = this.service.getAllStudenti().iterator();
+        assertEquals(students.next().getID(), newStudent.getID());
+
+        this.service.deleteStudent("1");
+    }
 }
