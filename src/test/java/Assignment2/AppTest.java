@@ -130,4 +130,10 @@ public class AppTest {
         Student newStudent = new Student("", "Bobo", 111, "bobo@gmail.com");
         assertThrows(ValidationException.class, () -> this.service.addStudent(newStudent));
     }
+
+    @Test
+    public void testAddStudentWithNullId() {
+        Student newStudent = new Student(null, "Bobo", 111, "bobo@gmail.com");
+        assertThrows(ValidationException.class, () -> this.service.addStudent(newStudent));
+    }
 }
