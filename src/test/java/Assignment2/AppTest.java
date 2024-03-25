@@ -158,4 +158,10 @@ public class AppTest {
 
     }
 
+    @Test
+    public void testAddStudentWithNullName(){
+        Student newStudent1 = new Student("12223", null, 223, "mrBean@gmail.com");
+        assertThrows(ValidationException.class, () -> this.service.addStudent(newStudent1));
+    }
+
 }
