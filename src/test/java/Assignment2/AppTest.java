@@ -111,4 +111,18 @@ public class AppTest {
         this.service.deleteStudent("111");
     }
 
+    /**
+     * test Student id
+     */
+    @Test
+    public void testAddStudentWithValidId() {
+        Student newStudent = new Student("2345", "Bobo", 111, "bobo@gmail.com");
+
+        this.service.addStudent(newStudent);
+        var students = this.service.getAllStudenti().iterator();
+        assertEquals(students.next().getID(), newStudent.getID());
+
+        this.service.deleteStudent("2345");
+    }
+
 }
