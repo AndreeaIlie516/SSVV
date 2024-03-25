@@ -150,4 +150,12 @@ public class AppTest {
 
         this.service.deleteStudent("12223");
     }
+
+    @Test
+    public void testAddStudentWithEmptyName(){
+        Student newStudent1 = new Student("12223", "", 223, "mrBean@gmail.com");
+        assertThrows(ValidationException.class, () -> this.service.addStudent(newStudent1));
+
+    }
+
 }
