@@ -105,10 +105,10 @@ public class AddAssignmentTest {
 
     @Test
     void testAddAssignmentDuplicateAssignment() {
-        Tema newTema = new Tema("1", "a", 1, 1);
+        Tema newTema = new Tema("1", "alaBala", 1, 1);
         this.service.addTema(newTema);
 
-        Tema newTema2 = new Tema("1", "a", 1, 1);
+        Tema newTema2 = new Tema("1", "alaBala", 1, 1);
 
         assertEquals(this.service.addTema(newTema2).getID(), newTema.getID());
     }
