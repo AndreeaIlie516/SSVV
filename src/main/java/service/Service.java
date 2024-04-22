@@ -162,32 +162,44 @@ public class Service {
      * @param feedback - feedback-ul notei
      * @return null daca nota a fost adaugata sau nota daca aceasta exista deja
      */
-    public double addNota(Nota nota, String feedback){
+    public Nota addNota(Nota nota, String feedback){
         notaValidator.validate(nota);
         Student student = studentFileRepository.findOne(nota.getIdStudent());
         Tema tema = temaFileRepository.findOne(nota.getIdTema());
-        int predare = calculeazaSPredare(nota.getData());
-        if(predare != tema.getDeadline()){
-            if (predare-tema.getDeadline() == 1){
-                nota.setNota(nota.getNota()-2.5);
+
+        Nota n = notaFileRepository.findOne(nota.getID());
+
+        if (n == null) {
+
+            int predare = calculeazaSPredare(nota.getData());
+            if (predare != tema.getDeadline()) {
+                if (predare - tema.getDeadline() == 1) {
+                    nota.setNota(nota.getNota() - 2.5);
+                } else if (predare - tema.getDeadline() == 2) {
+                    nota.setNota(nota.getNota() - 5);
+                } else if (predare - tema.getDeadline() > 2) {
+                    nota.setNota(1);
+                }
             }
-            else{
-                throw new ValidationException("Studentul nu mai poate preda aceasta tema!");
+
+            this.notaFileRepository.save(nota);
+
+            String filename = "fisiere/" + student.getNume() + ".txt";
+            try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(filename, true))) {
+                bufferedWriter.write("\nTema: " + tema.getID());
+                bufferedWriter.write("\nNota: " + nota.getNota());
+                bufferedWriter.write("\nPredata in saptamana: " + predare);
+                bufferedWriter.write("\nDeadline: " + tema.getDeadline());
+                bufferedWriter.write("\nFeedback: " + feedback);
+                bufferedWriter.newLine();
+            } catch (IOException exception) {
+                throw new ValidationException(exception.getMessage());
             }
+
+            return null;
         }
-        notaFileRepository.save(nota);
-        String filename = "fisiere/" + student.getNume() + ".txt";
-        try(BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(filename, true))){
-            bufferedWriter.write("\nTema: " + tema.getID());
-            bufferedWriter.write("\nNota: " + nota.getNota());
-            bufferedWriter.write("\nPredata in saptamana: " + predare);
-            bufferedWriter.write("\nDeadline: " + tema.getDeadline());
-            bufferedWriter.write("\nFeedback: " +feedback);
-            bufferedWriter.newLine();
-        } catch (IOException exception){
-            throw new ValidationException(exception.getMessage());
-        }
-        return nota.getNota();
+
+        return nota;
     }
 
     /**
